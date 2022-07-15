@@ -1,0 +1,101 @@
+.registration {
+    background-color: white;
+    &__container {
+        padding: 0 60px 0 60px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1440px;
+    }
+    &__form {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+.login {
+    background-color: white;
+    margin-top: 60px;
+    &__container {
+        padding: 0 60px 0 60px;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1440px;
+    }
+    &__form {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    &__alert {
+        opacity: 1;
+        transition: opacity 0.6s; /* 600ms to fade out */
+        padding: 20px;
+        background-color: #f44336; /* Red */
+        color: white;
+        margin-bottom: 15px;
+        &__close {
+            margin-left: 15px;
+            color: white;
+            font-weight: 400;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover{
+                color: black;
+            }
+        }
+    }
+}
+
+.form {
+    &__input {
+        border: 0px;
+        box-sizing: border-box;
+        padding-top: 25px;
+        padding-left: 46px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        background-color: #d2d2d2;
+        max-width: 614px;
+        min-width: 47%;
+        margin-top: 35px;
+        color: #505050;
+    }
+    &__button {
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        border: 0px;
+        background-color: #4B64B9;
+        padding: 16px 142px;
+        color: #ffffff;
+        margin-top: 50px;
+    }
+    &__textarea {
+        border: 0px;
+        box-sizing: border-box;
+        padding-top: 25px; 
+        padding-left: 46px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 22px;
+        background-color: #d2d2d2;
+        max-width: 614px;
+        min-width: 47%;
+        margin-top: 35px;
+        color: #505050;
+    }
+}

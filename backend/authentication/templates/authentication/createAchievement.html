@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление достижения</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="{% static 'authentication/scss/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <a href="{% url 'main' %}" class="header__logo">
+                    <img src="{% static 'authentication/img/mospolytech-logo.svg' %}" alt="Логотип">
+                </a>
+                <div class="header__search search">
+                    <input type="text" class="search__input" placeholder="Поиск...">
+                    <a href="#" class="search__icon">
+                        <img src="{% static 'authentication/img/search.svg' %}" alt="Поиск">
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="header__link">Выйти</a>
+                <a href="#" class="header__icon">
+                    <img src="{% static 'authentication/img/avatar-icon.svg' %}" alt="Аккаунт">
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}" class="header__link">Войти</a>
+                <a href="{% url 'registration' %}" class="header__link">Зарегистрироваться</a>
+                <a href="{% url 'login' %}" class="header__icon">
+                    <img src="{% static 'authentication/img/avatar-icon.svg' %}" alt="Войти в аккаунт">
+                </a>
+                {% endif %}
+            </div>
+        </header>
+        <main class="main">
+            <h1 class="visually-hidden">Достижения студентов Московского Политеха</h1>
+            <section class="introduction">
+                <div class="introduction__container">
+                    <h2 class="introduction__heading">Добавить достижение</h2>
+                    <p class="introduction__text">Заполните поля ниже для добавления нового достижения.</p>
+                </div>
+            </section>
+            <section class="registration">
+                <div class="registration__container">
+                    <form method="POST" action="" class="registration__form form">
+                        {% csrf_token %}
+                        <span>{{error}}</span>
+                        {{form.title}} <br>
+                        {{form.description}} <br>
+                        {{form.professor}} <br>
+                        {{form.date}} <br>
+                        {{form.organization}}
+                        <button type="submit" class="form__button">Добавить достижение</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__container">
+                <nav class="footer__navigation navigation">
+                    <a href="{% url 'main' %}" class="navigation__link">Проекты и Достижения</a>
+                    <a href="{% url 'login' %}" class="navigation__link">Войти</a>
+                    <a href="{% url 'registration' %}" class="navigation__link">Зарегистрироваться</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

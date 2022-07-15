@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="{% static 'authentication/scss/style.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__container">
+                <a href="{% url 'main' %}" class="header__logo">
+                    <img src="{% static 'authentication/img/mospolytech-logo.svg' %}" alt="Логотип">
+                </a>
+                <div class="header__search search">
+                    <input type="text" class="search__input" placeholder="Поиск...">
+                    <a href="#" class="search__icon">
+                        <img src="{% static 'authentication/img/search.svg' %}" alt="Поиск">
+                    </a>
+                </div>
+                <a href="{% url 'login' %}" class="header__link">Войти</a>
+                <a href="{% url 'registration' %}" class="header__link">Зарегистрироваться</a>
+                <a href="{% url 'login' %}" class="header__icon">
+                    <img src="{% static 'authentication/img/avatar-icon.svg' %}" alt="Войти в аккаунт">
+                </a>
+            </div>
+        </header>
+        <main>
+            <h1 class="visually-hidden">Портфолио студентов Московского Политеха</h1>
+            <section class="introduction">
+                {% for el in achievement %}
+                <div class="introduction__container">
+                    <h2 class="introduction__heading">{{el.title}}</h2>
+                    <p class="introduction__text">{{el.description}}</p>
+                    <div class="introduction__info info">
+                        <span class="info__text">{{el.professor}}</span>
+                        <span class="info__text">{{el.date}}</span>
+                        <span class="info__text">{{el.organization}}</span>
+                    </div>
+                </div>
+                {% endfor %}
+            </section>
+            <section class=" projects">
+                <div class="projects__wrapper">
+                    <h2 class="projects__heading">Достижения наших студентов</h2>
+                    <p class="projects__text">Любой студент уже на первом курсе может принимать участие в различных мероприятиях, получая опыт и заполняя свое портфолио для дальнейшей работы.</p>
+                    <ul class="projects__list">
+                        {% for el in achievements %}
+                        <li class="projects__item">
+                            <div class="project__item__img">
+                                <img src="{% static 'authentication/img/picture.jpg' %}" alt="Изображение проекта">
+                            </div>
+                            <div class="projects__item__container">
+                                <h3 class="projects__item__heading">
+                                    <a href="{% url 'achievement' %}">{{el.title}}</a>
+                                </h3>
+                                <p class="projects__item__text">
+                                    <a href="{% url 'achievement' %}">{{el.description}}</a>
+                                </p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__container">
+                <nav class="footer__navigation navigation">
+                    <a href="{% url 'main' %}" class="navigation__link">Проекты и Достижения</a>
+                    <a href="{% url 'login' %}" class="navigation__link">Войти</a>
+                    <a href="{% url 'registration' %}" class="navigation__link">Зарегистрироваться</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

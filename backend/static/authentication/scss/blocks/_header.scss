@@ -1,0 +1,40 @@
+.header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(0.25turn, #212121, #717171);
+    &__container {
+        max-width: 1440px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 60px 0 60px;
+        margin: 0 auto;
+        width: 100%;
+        align-items: center;
+    }
+    &__logo {
+        img {
+            height: 70px;
+        }
+    }
+}
+
+.search {
+    margin-left: auto;
+    &__input {
+        margin-right: 60px;
+        width: 432px;
+        height: 50px;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        color: #525252;
+        padding: 13px 0px 14px 46px;
+        background: #E6E6E6;
+        border: 1px solid #989898;
+    }
+}

@@ -1,0 +1,16 @@
+.projects {
+    margin-top: 80px;
+    &__wrapper {
+        max-width: 1440px;
+        padding: 0 60px 0 60px;
+        margin: 0 auto;
+        width: 100%;
+    }
+    &__heading {
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 47px;
+        color: #2F2F2F;
+        margin-left: 46px;
+    }
+}

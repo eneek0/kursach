@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="{% static 'authentication/scss/style.css' %}">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main</a>
+    <div class="wrapper">
+        <header class="header" role="banner">
+            <div class="header__container">
+                <a href="{% url 'main' %}" class="header__logo">
+                    <img src="{% static 'authentication/img/mospolytech-logo.svg' %}" alt="Московский Политех">
+                </a>
+                <div class="header__search search">
+                    <input type="text" class="search__input" placeholder="Поиск...">
+                    <a href="#" class="search__icon">
+                        <img src="{% static 'authentication/img/search.svg' %}" alt="Поиск">
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="header__link">Выйти</a>
+                <a href="#" class="header__icon">
+                    <img src="{% static 'authentication/img/avatar-icon.svg' %}" alt="Аккаунт">
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}" class="header__link">Войти</a>
+                <a href="{% url 'registration' %}" class="header__link">Зарегистрироваться</a>
+                <a href="{% url 'login' %}" class="header__icon">
+                    <img src="{% static 'authentication/img/avatar-icon.svg' %}" alt="Войти в аккаунт">
+                </a>
+                {% endif %}
+            </div>
+        </header>
+        <main class="main" id="main">
+            <h1 class="visually-hidden">Портфолио студентов Московского Политеха</h1>
+            <section class="projects">
+                <div class="projects__wrapper">
+                    {% if messages %}
+                        {%for message in messages %}
+                            <div class="projects__message">
+                                <span class="projects__message__close" onclick="this.parentElement.style.display='none';">&times;</span>
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <h2 class="projects__heading">Студенческие проекты</h2>
+                    <p class="projects__text">Любой студент уже на первом курсе может присоединиться к проектной группе для работы над креативными задачами в области технологий, дизайна, энергетики, транспорта, социальной сферы и других.</p>
+                    {% if projects %}
+                    <ul class="projects__list">
+                        {% for el in projects %}
+                        <li class="projects__item">
+                            <div class="project__item__img">
+                                <img src="{% static 'authentication/img/picture.jpg' %}" alt="Изображение проекта">
+                            </div>
+                            <div class="projects__item__container">
+                                <h3 class="projects__item__heading">
+                                    <a href="#">{{el.title}}</a>
+                                </h3>
+                                <p class="projects__item__text">
+                                    <a href="#">{{el.description}}</a>
+                                </p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p class="projects__text">Пока что проектов нет.</p>
+                    {% endif %}
+                    <a href="{% url 'createProject' %}" class="projects__button form__button">Добавить</a>
+                </div>
+            </section>
+            <section class=" projects">
+                <div class="projects__wrapper">
+                    <h2 class="projects__heading">Достижения наших студентов</h2>
+                    <p class="projects__text">Любой студент уже на первом курсе может принимать участие в различных мероприятиях, получая опыт и заполняя свое портфолио для дальнейшей работы.</p>
+                    <ul class="projects__list">
+                        {% for el in achievements %}
+                        <li class="projects__item">
+                            <div class="project__item__img">
+                                <img src="{% static 'authentication/img/picture.jpg' %}" alt="Изображение проекта">
+                            </div>
+                            <div class="projects__item__container">
+                                <h3 class="projects__item__heading">
+                                    <a href="{% url 'achievement' %}">{{el.title}}</a>
+                                </h3>
+                                <p class="projects__item__text">
+                                    <a href="{% url 'achievement' %}">{{el.description}}</a>
+                                </p>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'createAchievement' %}" class="projects__button form__button">Добавить</a>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="footer__container">
+                <nav class="footer__navigation navigation" role="navigation">
+                    <a href="{% url 'main' %}" class="navigation__link">Проекты и Достижения</a>
+                    <a href="{% url 'login' %}" class="navigation__link">Войти</a>
+                    <a href="{% url 'registration' %}" class="navigation__link">Зарегистрироваться</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+<script>
+    // Get all elements with class="closebtn"
+    var close = document.getElementsByClassName("projects__message__close");
+    var i;
+    
+    // Loop through all close buttons
+    for (i = 0; i < close.length; i++) {
+      // When someone clicks on a close button
+        close[i].onclick = function(){
+    
+        // Get the parent of <span class="closebtn"> (<div class="alert">)
+        var div = this.parentElement;
+    
+        // Set the opacity of div to 0 (transparent)
+        div.style.opacity = "0";
+    
+        // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+        setTimeout(function(){ div.style.display = "none"; }, 600);
+        }
+    }
+</script>
